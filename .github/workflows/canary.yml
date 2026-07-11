@@ -12,6 +12,7 @@ on:
     inputs:
       upload:
         description: 'Skip Upload: Set to "y" to skip uploading the build.'
+        default: y
         required: false
 
 permissions:
