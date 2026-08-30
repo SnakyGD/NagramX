@@ -111,6 +111,18 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         return currentState;
     }
 
+    /**
+     * Drops the cached drawables so the next {@link #setState} rebuilds them. Needed because the
+     * iOS-styled input field swaps in different raw resources for the voice/video transition.
+     */
+    public void invalidateStateCache() {
+        stateMap.clear();
+        animatingState = null;
+        if (currentState != null) {
+            setState(currentState, false);
+        }
+    }
+
     private TransitState getAnyState(State from) {
         for (TransitState transitState : TransitState.values()) {
             if (transitState.firstState == from) {
